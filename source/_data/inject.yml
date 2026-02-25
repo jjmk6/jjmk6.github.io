@@ -1,0 +1,11 @@
+# inject.yml
+# 用于注入自定义脚本
+# GitHub Calendar 已通过 hexo-filter-gitcalendar 插件实现
+# 不需要在此处手动注入
+
+# 小精灵注入
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/pet.css">
+  bodyEnd:
+    - <script src="/js/pet.js"></script>

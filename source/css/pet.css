@@ -1,0 +1,58 @@
+#interactive-elf {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    z-index: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#interactive-elf:hover {
+    transform: scale(1.05);
+}
+
+#elf-image {
+    width: 250px;
+    height: 420px;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+    background: transparent;
+}
+
+#elf-speech {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 12px;
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 300px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#elf-speech.show {
+    opacity: 1;
+}
+
+#elf-speech::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.9);
+}

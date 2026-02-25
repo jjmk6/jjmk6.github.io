@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互动小精灵</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Microsoft Yahei', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* 主容器：固定在左下角 */
+        #interactive-elf {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #interactive-elf:hover {
+            transform: scale(1.05);
+        }
+
+        /* 小精灵图片：放大到2倍（原180px→360px），也可改270px为1.5倍 */
+        #elf-image {
+            width: 360px; /* 核心修改：尺寸放大2倍，如需1.5倍可改为270px */
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 对话气泡：适配放大后的精灵，调整尺寸和位置 */
+        #elf-speech {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 12px;
+            padding: 12px 20px; /* 气泡放大，适配更大的精灵 */
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px; /* 字体放大，更醒目 */
+            line-height: 1.5;
+            max-width: 300px; /* 气泡宽度适配 */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        #elf-speech.show {
+            opacity: 1;
+        }
+
+        /* 气泡小尾巴：适配放大后的气泡 */
+        #elf-speech::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #fff;
+        }
+
+        /* 右侧设计理念面板 */
+        #design-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #design-panel h2 {
+            color: #333;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        #design-panel p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        #design-panel ul {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 互动小精灵 -->
+    <div id="interactive-elf">
+        <div id="elf-speech"></div>
+        <img id="elf-image" src="" alt="互动小精灵">
+    </div>
+
+    <!-- 右侧设计理念面板 -->
+    <div id="design-panel">
+        <h2>🎨 设计理念</h2>
+        <p>这个互动小精灵的设计核心是<strong>轻量化、高趣味性</strong>，旨在为静态网站增添生动的交互体验，本次优化重点提升了尺寸和交互的趣味性。</p>
+        
+        <p><strong>核心设计思路：</strong></p>
+        <ul>
+            <li><strong>视觉尺寸：</strong>将精灵放大2倍（360px宽），视觉更醒目，保留左下角固定位置，既不干扰主内容又有存在感。</li>
+            <li><strong>交互逻辑：</strong>区分点击区域（胸部专属话术+递进式反馈），点击胸部会触发“讨厌啦→变态→打110”等趣味话术，非胸部区域则显示随机俏皮话，提升交互的趣味性和层次感。</li>
+            <li><strong>视觉反馈：</strong>气泡和字体同步放大，悬停微缩放，反馈更直观，符合用户交互直觉。</li>
+        </ul>
+
+        <p><strong>技术实现：</strong></p>
+        <ul>
+            <li>纯HTML/CSS/JavaScript实现，无外部框架依赖，可直接集成到任意静态网站。</li>
+            <li>基于点击坐标判断区域，实现差异化话术反馈，多次点击胸部会触发递进式趣味台词。</li>
+            <li>响应式设计，放大后仍适配不同设备，气泡尺寸同步优化，视觉更协调。</li>
+        </ul>
+    </div>
+
+    <script>
+        // 配置项：已替换为你提供的三张图片真实URL
+        const elfConfig = {
+            images: [
+                "https://p26-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/e2b9cf2606ef4ec9a91ab85b875816d1.jpg~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260225171626E88F01793FFA169B72B3&rrcfp=dafada99&x-expires=2088234986&x-signature=qyTPN8wrsTus7s%2Buc2bJCCSrguk%3D",
+                "https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/ad7b51a37a474ad6856eafdd260e9385.jpg~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260225171626E88F01793FFA169B72B3&rrcfp=dafada99&x-expires=2088234986&x-signature=Ry3Vt2Z%2BhbR9FMVe3%2BJJM8lT93M%3D",
+                "https://p26-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/e2a87dae79b446189786a037d27e7f08.jpg~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260225171626E88F01793FFA169B72B3&rrcfp=dafada99&x-expires=2088234986&x-signature=NBcmzgvCpUic7inN0Ido5803V%2BQ%3D"
+            ],
+            // 普通区域俏皮话（非胸部点击）
+            normalDialogues: [
+                "哈喽～今天也要元气满满哦！(๑•̀ㅂ•́)و✧",
+                "偷偷告诉你，我其实是从二次元穿越来的！(｡•̀ᴗ-)✧",
+                "今天的你也超棒的，继续加油呀！(๑˃̵ᴗ˂̵)و",
+                "哎呀，被你发现了，我其实是网站的守护精灵～(◍•ᴗ•◍)",
+                "要不要和我一起摸鱼？就一会儿…(๑•́ω•̀๑)",
+                "猜猜我下一个动作是什么？猜对了有奖励哦～(≧∇≦)ﾉ",
+                "我超甜的，要不要尝一口？(｡♥‿♥｡)"
+            ],
+            // 胸部区域递进式话术（多次点击会切换）
+            chestDialogues: [
+                "讨厌啦～乱点什么呢 (⁄ ⁄•⁄ω⁄•⁄ ⁄)",
+                "喂！你是不是变态啊？😡",
+                "再点我要打110了哦！🚨",
+                "救命啊！有色狼骚扰我！🆘",
+                "算你狠…我躲还不行嘛😢",
+                "呜呜呜，欺负人，我要告诉管理员！😭"
+            ]
+        };
+
+        let currentIndex = 0; // 图片切换索引
+        let chestClickCount = 0; // 胸部点击次数（用于递进话术）
+        const elfImage = document.getElementById('elf-image');
+        const elfSpeech = document.getElementById('elf-speech');
+        const interactiveElf = document.getElementById('interactive-elf');
+
+        // 初始化显示第一张图片
+        elfImage.src = elfConfig.images[0];
+
+        // 点击事件处理（核心：判断点击区域+递进话术）
+        interactiveElf.addEventListener('click', (e) => {
+            // 1. 切换动作（循环切换三张图片）
+            currentIndex = (currentIndex + 1) % elfConfig.images.length;
+            elfImage.src = elfConfig.images[currentIndex];
+
+            // 2. 获取点击位置（相对精灵图片的坐标）
+            const rect = elfImage.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            const imgHeight = rect.height;
+            
+            // 3. 判断是否点击胸部区域（y轴 30% - 60% 范围，适配不同尺寸）
+            const isChestClick = clickY > imgHeight * 0.3 && clickY < imgHeight * 0.6;
+            
+            let dialogue = '';
+            if (isChestClick) {
+                // 胸部点击：递进式话术
+                dialogue = elfConfig.chestDialogues[chestClickCount % elfConfig.chestDialogues.length];
+                chestClickCount++; // 点击次数+1，下次切换下一句
+            } else {
+                // 非胸部点击：随机普通俏皮话
+                dialogue = elfConfig.normalDialogues[Math.floor(Math.random() * elfConfig.normalDialogues.length)];
+                chestClickCount = 0; // 重置胸部点击次数
+            }
+
+            // 4. 显示话术气泡（4秒后消失，适配更大的精灵）
+            elfSpeech.textContent = dialogue;
+            elfSpeech.classList.add('show');
+            setTimeout(() => {
+                elfSpeech.classList.remove('show');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
