@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第6周复盘（2月2日-2月8日） | JIE的笔记本</title><meta name="author" content="jjmk6"><meta name="copyright" content="jjmk6"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第6周复盘（2月2日 ~ 2月8日）本周概览本周是 AI 工具深度应用的一周。从 Kimi Code 到 OpenClaud，从 Discord Bot 到 Opus 4.6，把各种工具配置到了极致。虽然论文 baseline 没跑起来，但项目软著文档、知识库整理、技术博文都完成了。磨刀不误砍..."><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "第6周复盘（2月2日-2月8日）",
+  "url": "https://jjmk6.github.io/posts/week6review2026.html",
+  "image": "https://jjmk6.github.io/img/riji.png",
+  "datePublished": "2026-02-07T16:00:00.000Z",
+  "dateModified": "2026-02-25T09:55:19.316Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "jjmk6",
+      "url": "https://jjmk6.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jjmk6.github.io/posts/week6review2026.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第6周复盘（2月2日-2月8日）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/pet.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-filter-gitcalendar@1.0.11/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="JIE的笔记本" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/toux.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/riji.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">JIE的笔记本</span></a><a class="nav-page-title" href="/"><span class="site-name">第6周复盘（2月2日-2月8日）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第6周复盘（2月2日-2月8日）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-07T16:00:00.000Z" title="发表于 2026-02-08 00:00:00">2026-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-25T09:55:19.316Z" title="更新于 2026-02-25 17:55:19">2026-02-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">905</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="第6周复盘（2月2日-2月8日）"><a href="#第6周复盘（2月2日-2月8日）" class="headerlink" title="第6周复盘（2月2日 ~ 2月8日）"></a>第6周复盘（2月2日 ~ 2月8日）</h1><h2 id="本周概览"><a href="#本周概览" class="headerlink" title="本周概览"></a>本周概览</h2><p>本周是 AI 工具深度应用的一周。从 Kimi Code 到 OpenClaud，从 Discord Bot 到 Opus 4.6，把各种工具配置到了极致。虽然论文 baseline 没跑起来，但项目软著文档、知识库整理、技术博文都完成了。磨刀不误砍柴工，下周可以开始砍柴了。</p>
+<h2 id="关键成果"><a href="#关键成果" class="headerlink" title="关键成果"></a>关键成果</h2><ol>
+<li><strong>AI 工具矩阵</strong> - Kimi Code、OpenClaud、7 个 AI 供应商接入、Discord Bot 配置完成</li>
+<li><strong>软著文档</strong> - 5 个项目整理成软著格式，国自然密码学申报项目构建完成</li>
+<li><strong>知识库升级</strong> - Claude Code 升级到 Opus 4.6，知识库健康度达 8.0</li>
+<li><strong>系统优化</strong> - Windows Terminal 替换、AutoGLM 整理释放 200G 空间、GitHub 推送问题解决</li>
+<li><strong>论文初稿</strong> - 8000 字初稿完成，50 篇参考文献规范化，ABMSF 模块代码实现</li>
+</ol>
+<h2 id="习惯追踪"><a href="#习惯追踪" class="headerlink" title="习惯追踪"></a>习惯追踪</h2><table>
+<thead>
+<tr>
+<th>习惯</th>
+<th>目标</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>论文30分钟</td>
+<td>每天</td>
+<td>5/7天 ✅</td>
+</tr>
+<tr>
+<td>散步/运动</td>
+<td>每天</td>
+<td>2/7天 ⚠️</td>
+</tr>
+<tr>
+<td>饮水2000ml</td>
+<td>每天</td>
+<td>6/7天 ✅</td>
+</tr>
+<tr>
+<td>低GI饮食</td>
+<td>每天</td>
+<td>3/7天 ⚠️</td>
+</tr>
+<tr>
+<td>教资学习</td>
+<td>每天</td>
+<td>0/7天 ❌</td>
+</tr>
+</tbody></table>
+<h2 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a>模式识别</h2><h3 id="精力-状态波动"><a href="#精力-状态波动" class="headerlink" title="精力/状态波动"></a>精力/状态波动</h3><ul>
+<li><strong>平均精力</strong>：5.7/10</li>
+<li><strong>平均情绪</strong>：5.8/10</li>
+<li><strong>最高精力的一天</strong>：2月3日、4日、5日（6/10）</li>
+<li><strong>最低精力的一天</strong>：2月2日（5/10，通宵后）</li>
+</ul>
+<h3 id="做得顺的事"><a href="#做得顺的事" class="headerlink" title="做得顺的事"></a>做得顺的事</h3><ul>
+<li>AI 工具配置与整合 —— Kimi Code、OpenClaud、Discord Bot</li>
+<li>知识库整理与优化 —— Opus 4.6 效果显著</li>
+<li>软著文档撰写 —— 5 个项目快速整理完成</li>
+<li>技术问题解决 —— GitHub 推送、Windows Terminal</li>
+</ul>
+<h3 id="阻力大的事"><a href="#阻力大的事" class="headerlink" title="阻力大的事"></a>阻力大的事</h3><ul>
+<li><strong>论文实验</strong> —— baseline 始终没跑起来</li>
+<li><strong>教资学习</strong> —— 完全没开始</li>
+<li><strong>数据采集</strong> —— 无人机禁飞、抖音爬虫失败</li>
+<li><strong>作息管理</strong> —— 打王者到凌晨、失眠</li>
+</ul>
+<h3 id="反复出现的卡点"><a href="#反复出现的卡点" class="headerlink" title="反复出现的卡点"></a>反复出现的卡点</h3><ol>
+<li><strong>论文实验拖延</strong> —— 每天计划跑 baseline，每天都没做</li>
+<li><strong>数据采集受阻</strong> —— 无人机禁飞、爬虫技术难度高</li>
+<li><strong>作息混乱</strong> —— 多次熬夜打王者或失眠</li>
+<li><strong>教资学习缺席</strong> —— 完全没有推进</li>
+</ol>
+<h2 id="未完成事项分析"><a href="#未完成事项分析" class="headerlink" title="未完成事项分析"></a>未完成事项分析</h2><table>
+<thead>
+<tr>
+<th>任务</th>
+<th>原因</th>
+<th>下周调整</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>论文 baseline 实验</td>
+<td>工具配置花了太多时间，逃避实验</td>
+<td>周一必须启动，不管工具多锋利</td>
+</tr>
+<tr>
+<td>教资学习</td>
+<td>没排上优先级，被工具配置挤占</td>
+<td>每天 30 分钟固定时间段</td>
+</tr>
+<tr>
+<td>无人机数据采集</td>
+<td>小区禁飞，天气不好</td>
+<td>联系厂商或换地点</td>
+</tr>
+<tr>
+<td>抖音爬虫</td>
+<td>技术难度超预期，多次尝试失败</td>
+<td>先搁置，专注论文实验</td>
+</tr>
+</tbody></table>
+<h2 id="本周感悟"><a href="#本周感悟" class="headerlink" title="本周感悟"></a>本周感悟</h2><blockquote>
+<p><strong>磨刀不误砍柴工，已经把刀磨到很锋利的程度了，可以开始用这些刀干活了。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>这是一个非常好的时代与机会，要把所有精力投入进去。每天保持 1 小时和 AI 沟通的时间，是一对一辅导的机会。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>想写好大论文，去看看相关方向的大论文怎么写的，然后再去写。不要闭门造车，要扎根多思考。</strong></p>
+</blockquote>
+<h2 id="下周调整"><a href="#下周调整" class="headerlink" title="下周调整"></a>下周调整</h2><ol>
+<li><strong>论文实验优先</strong> —— 周一必须启动 baseline，工具已经够锋利了，开始砍柴</li>
+<li><strong>教资学习落地</strong> —— 每天 30 分钟，固定在黄金效率时段</li>
+<li><strong>作息规律</strong> —— 减少熬夜打王者，保证精力</li>
+<li><strong>数据集方案</strong> —— 联系厂商或换地点，不再死磕抖音爬虫</li>
+<li><strong>软著收尾</strong> ——— 加插图、改格式，准备提交</li>
+</ol>
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ul>
+<li><input disabled="" type="checkbox"> 论文：启动 baseline 实验</li>
+<li><input disabled="" type="checkbox"> 教资：每天学习 30 分钟</li>
+<li><input disabled="" type="checkbox"> 数据集：联系厂商或换地点采集</li>
+<li><input disabled="" type="checkbox"> 软著：完成插图和格式修改</li>
+<li><input disabled="" type="checkbox"> 运动：至少 3 天</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jjmk6.github.io">jjmk6</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jjmk6.github.io/posts/week6review2026.html">https://jjmk6.github.io/posts/week6review2026.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jjmk6.github.io" target="_blank">JIE的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%91%A8%E5%A4%8D%E7%9B%98/">周复盘</a></div><div class="post-share"><div class="social-share" data-image="/img/riji.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/week7review2026.html" title="第7周复盘（2月10日-2月16日）"><img class="cover" src="/img/riji.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">第7周复盘（2月10日-2月16日）</div></div><div class="info-2"><div class="info-item-1">第7周复盘（2月10日 ~ 2月16日）本周概览本周是从学校回家的一周，完成了井盖论文初稿、红学爬虫跑通，但整体处于”多而散”的状态——买了大量 token 额度却找不到抓手，项目进展零散。回家后作息混乱，运动完全中断，处于一种”想做的事太多但无从下手”的焦虑状态。 关键成果 井盖论文 - 完成初稿，写成 LaTeX 形式（但科研绘图、实验模块图待完善） 红学爬虫 - 跑通基础功能，后续升级版爬取约 1000 个视频和 10 万条评论 工具升级 - Claude Code 升级到 Opus 4.6，安装 mem 插件，配置智谱大龙虾 知识库可视化 - 用 Kimi 制作了项目 dashboard（论文数据采集、竞赛分配、磁盘归档） GitHub 仓库 - 为文献阅读助手开仓，整合 80+ 篇文献  习惯追踪   习惯 目标 完成情况    论文30分钟 每天 3/7天   散步/运动 每天 1/7天   饮水2000ml 每天 5/7天   早睡早起 每天 0/7天（多次11-12点起床）   教资学习 每天 0/7天   模式识别精力/状态波动 平均精力：6.0/10 平均情绪...</div></div></div></a><a class="pagination-related" href="/posts/e-disk-cleanup.html" title="E盘整理实战：微信文件治理与空间管理"><img class="cover" src="/img/cos.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">E盘整理实战：微信文件治理与空间管理</div></div><div class="info-2"><div class="info-item-1">前言在完成了C盘和D盘的整理之后，我的E盘也亮起了红灯——使用率一度高达93.9%，剩余空间仅剩17GB。与C盘（系统盘）和D盘（软件盘）不同，E盘是我存放微信文件、个人项目和工作资料的地方，其中最令人头疼的就是微信文件占用了196GB！本文记录了E盘整理的全过程，特别是如何治理微信文件这个”空间杀手”。   一、E盘的危急状态1.1 初始诊断1234总容量：277 GB已用：260 GB (93.9%) 🔴剩余：17 GB 🔴状态：告急！  E盘根目录的”四大巨头”：    排名 文件夹 大小 占比 说明    🥇 xwechat_files 107.53 GB 39% 新版微信文件   🥈 wechat 88.91 GB 32% 旧版微信文件   🥉 000 53.59 GB 19% 个人知识库   4 vscode_project 52.69 GB 19% VSCode项目   微信相关合计：196.44 GB，占E盘71%！ 1.2 其他占用   文件夹 大小 状态    steam 13.06 GB 游戏平台   BaiduNetdiskDownload 12...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/week7review2026.html" title="第7周复盘（2月10日-2月16日）"><img class="cover" src="/img/riji.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-16</div><div class="info-item-2">第7周复盘（2月10日-2月16日）</div></div><div class="info-2"><div class="info-item-1">第7周复盘（2月10日 ~ 2月16日）本周概览本周是从学校回家的一周，完成了井盖论文初稿、红学爬虫跑通，但整体处于”多而散”的状态——买了大量 token 额度却找不到抓手，项目进展零散。回家后作息混乱，运动完全中断，处于一种”想做的事太多但无从下手”的焦虑状态。 关键成果 井盖论文 - 完成初稿，写成 LaTeX 形式（但科研绘图、实验模块图待完善） 红学爬虫 - 跑通基础功能，后续升级版爬取约 1000 个视频和 10 万条评论 工具升级 - Claude Code 升级到 Opus 4.6，安装 mem 插件，配置智谱大龙虾 知识库可视化 - 用 Kimi 制作了项目 dashboard（论文数据采集、竞赛分配、磁盘归档） GitHub 仓库 - 为文献阅读助手开仓，整合 80+ 篇文献  习惯追踪   习惯 目标 完成情况    论文30分钟 每天 3/7天   散步/运动 每天 1/7天   饮水2000ml 每天 5/7天   早睡早起 每天 0/7天（多次11-12点起床）   教资学习 每天 0/7天   模式识别精力/状态波动 平均精力：6.0/10 平均情绪...</div></div></div></a><a class="pagination-related" href="/posts/week8review2026.html" title="第8周复盘（2月16日-22日）"><img class="cover" src="/img/riji.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-22</div><div class="info-item-2">第8周复盘（2月16日-22日）</div></div><div class="info-2"><div class="info-item-1">第8周复盘（2月16日 ~ 2月22日）本周概览本周是春节假期核心周，在陪伴家人和推进科研之间寻找平衡。祖师爷论文项目取得重大进展，80篇论文全部整合完成并推送。但作息调整持续失败，精力状态后半周明显下滑，红学项目迟迟未能启动。 关键成果 祖师爷论文整合完成 - 80篇论文全部找齐，用多Agent（Kimi/Claude/MiniMax/GLM）四方验证，整合推送完成 论文阅读前端完整做好 - 蔡老师项目的可视化界面开发完成 业务流程跑通 - 用MiniMax跑通「调研→文本→配图→博文」完整链路 大龙虾配置升级 - memory链软链接到日记空间，可基于日记制定计划 知识布道 - 帮发小、Andy配置了AI工具（Claude Code/Kimi Code/OpenAI Code）  习惯追踪   习惯 目标 完成情况    论文阅读 每天 3/7天（未达成KPI）   散步/运动 每天 6/7天 ✅   饮水2000ml 每天 6/7天 ✅   教资学习 每天1h 2/7天（严重不足）   早睡（23:30前） 每天 0/7天 ❌   模式识别精力/状态波动   日期 精力 情...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/toux.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">jjmk6</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jjmk6"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jjmk6" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3465937769@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC6%E5%91%A8%E5%A4%8D%E7%9B%98%EF%BC%882%E6%9C%882%E6%97%A5-2%E6%9C%888%E6%97%A5%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">第6周复盘（2月2日 ~ 2月8日）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%91%A8%E6%A6%82%E8%A7%88"><span class="toc-number">1.1.</span> <span class="toc-text">本周概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%88%90%E6%9E%9C"><span class="toc-number">1.2.</span> <span class="toc-text">关键成果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E6%83%AF%E8%BF%BD%E8%B8%AA"><span class="toc-number">1.3.</span> <span class="toc-text">习惯追踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB"><span class="toc-number">1.4.</span> <span class="toc-text">模式识别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E5%8A%9B-%E7%8A%B6%E6%80%81%E6%B3%A2%E5%8A%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text">精力&#x2F;状态波动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E5%BE%97%E9%A1%BA%E7%9A%84%E4%BA%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">做得顺的事</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%8A%9B%E5%A4%A7%E7%9A%84%E4%BA%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text">阻力大的事</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%A4%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8D%A1%E7%82%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text">反复出现的卡点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E5%AE%8C%E6%88%90%E4%BA%8B%E9%A1%B9%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text">未完成事项分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%91%A8%E6%84%9F%E6%82%9F"><span class="toc-number">1.6.</span> <span class="toc-text">本周感悟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E5%91%A8%E8%B0%83%E6%95%B4"><span class="toc-number">1.7.</span> <span class="toc-text">下周调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E5%91%A8%E8%AE%A1%E5%88%92"><span class="toc-number">1.8.</span> <span class="toc-text">下周计划</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/steam-steel-infinite-minds-analysis.html" title="深度解析：蒸汽、钢铁与无限心智"><img src="/img/steam-steel-infinite-minds/00_%E5%B0%81%E9%9D%A2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深度解析：蒸汽、钢铁与无限心智"/></a><div class="content"><a class="title" href="/posts/steam-steel-infinite-minds-analysis.html" title="深度解析：蒸汽、钢铁与无限心智">深度解析：蒸汽、钢铁与无限心智</a><time datetime="2026-02-24T08:00:00.000Z" title="发表于 2026-02-24 16:00:00">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/97f32b1f.html" title="专业课第二次作业"><img src="/img/c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="专业课第二次作业"/></a><div class="content"><a class="title" href="/posts/97f32b1f.html" title="专业课第二次作业">专业课第二次作业</a><time datetime="2026-02-23T17:15:30.000Z" title="发表于 2026-02-24 01:15:30">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/minimax-agent-analysis.html" title="MiniMax Agent 应用场景与核心竞争力"><img src="/img/minimax-agent-analysis/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MiniMax Agent 应用场景与核心竞争力"/></a><div class="content"><a class="title" href="/posts/minimax-agent-analysis.html" title="MiniMax Agent 应用场景与核心竞争力">MiniMax Agent 应用场景与核心竞争力</a><time datetime="2026-02-23T13:00:00.000Z" title="发表于 2026-02-23 21:00:00">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/qwen-coding-plan-report.html" title="通义千问 (Qwen) Coding Plan 调研报告"><img src="/img/qwen-coding-plan/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通义千问 (Qwen) Coding Plan 调研报告"/></a><div class="content"><a class="title" href="/posts/qwen-coding-plan-report.html" title="通义千问 (Qwen) Coding Plan 调研报告">通义千问 (Qwen) Coding Plan 调研报告</a><time datetime="2026-02-23T04:00:00.000Z" title="发表于 2026-02-23 12:00:00">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/coding-plan-api-report.html" title="国产顶级 Coding Plan API 研究报告"><img src="/img/coding-plan-report/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="国产顶级 Coding Plan API 研究报告"/></a><div class="content"><a class="title" href="/posts/coding-plan-api-report.html" title="国产顶级 Coding Plan API 研究报告">国产顶级 Coding Plan API 研究报告</a><time datetime="2026-02-22T04:00:00.000Z" title="发表于 2026-02-22 12:00:00">2026-02-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2021 - 2026 By jjmk6</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="/js/tw_cn.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script src="/js/pet.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="/img/cos.png" alt="/img/cos.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2022-01-01</span><a class="blog-slider__title" href="posts/e350326d.html">腾讯云对象存储权限管理操作指南</a><div class="blog-slider__text">cos使用教程</div><a class="blog-slider__button" href="posts/e350326d.html">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="/img/riji.png" alt="/img/riji.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2026-01-01</span><a class="blog-slider__title" href="posts/plan202601.html">2026年1月计划</a><div class="blog-slider__text">2026年1月规划 - 启动、阅读、运动、作息调整</div><a class="blog-slider__button" href="posts/plan202601.html">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="/img/linux.png" alt="/img/linux.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2022-01-01</span><a class="blog-slider__title" href="posts/7e2c5aa3.html">Linux常用文件管理命令</a><div class="blog-slider__text">快速学会使用Linux常用命令</div><a class="blog-slider__button" href="posts/7e2c5aa3.html">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="/img/linux.png" alt="/img/linux.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2022-01-03</span><a class="blog-slider__title" href="posts/fae31114.html">shell教程（一）基本语法</a><div class="blog-slider__text">快速学会使用shell</div><a class="blog-slider__button" href="posts/fae31114.html">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-filter-gitcalendar@1.0.11/lib/gitcalendar.js"></script><script data-pjax>
+  var git_color = document.documentElement.dataset.theme === 'dark' ? ['#ebedf0', '#bae3fd', '#74b9ff', '#4dabf7', '#0969da', '#0550ae', '#033d8b', '#0a3069', '#08285c', '#06224d', '#041c3e'] : ['#ebedf0', '#bae3fd', '#74b9ff', '#4dabf7', '#0969da', '#0550ae', '#033d8b', '#0a3069', '#08285c', '#06224d', '#041c3e']
+  function boxInit(git_color) {
+    function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<div class="recent-post-item" id="gitcalendarBar" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+    }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gh-calendar.rschristian.dev/user//api?jjmk6",git_color,'jjmk6')
+    }
+  }
+  boxInit(git_color)
+  var htmlElement = document.documentElement
+  var observer = new MutationObserver(function (mutationsList) {
+    for (var mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        var newThemeValue = htmlElement.getAttribute('data-theme')
+        if (newThemeValue === 'light') {
+          var gitcalendarBar = document.getElementById('gitcalendarBar');
+          if (gitcalendarBar) {
+              gitcalendarBar.parentNode.removeChild(gitcalendarBar);
+          }
+          boxInit(['#ebedf0', '#bae3fd', '#74b9ff', '#4dabf7', '#0969da', '#0550ae', '#033d8b', '#0a3069', '#08285c', '#06224d', '#041c3e'])
+        } else {
+          var gitcalendarBar = document.getElementById('gitcalendarBar');
+          if (gitcalendarBar) {
+              gitcalendarBar.parentNode.removeChild(gitcalendarBar);
+          }
+          boxInit(['#ebedf0', '#bae3fd', '#74b9ff', '#4dabf7', '#0969da', '#0550ae', '#033d8b', '#0a3069', '#08285c', '#06224d', '#041c3e'])
+        }
+      }
+    }
+  })
+  var config = { attributes: true }
+  observer.observe(htmlElement, config)  
+  </script><!-- hexo injector body_end end --></body></html>
